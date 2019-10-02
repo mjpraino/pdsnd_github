@@ -3,9 +3,11 @@ import pandas as pd
 import numpy as np
 import statistics as st
 
-CITY_DATA = { 'chicago': 'chicago.csv',
+
+CITY_DATA = {'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+              'washington': 'washington.csv'}
+
 
 def get_filters():
     """
@@ -13,26 +15,28 @@ def get_filters():
 
     Returns:
         (str) city - name of the city to analyze
-        (str) month - name of the month to filter by, or "all" to apply no month filter
-        (str) day - name of the day of week to filter by, or "all" to apply no day filter
+        (str) month - name of the month to filter by,
+        or "all" to apply no month filter
+        (str) day - name of the day of week to filter by,
+         or "all" to apply no day filter
     """
 
     print('Hello! Let\'s explore some US bikeshare data!')
-    # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+    # TO DO: get user input for city (chicago, new york city, washington).
+    # HINT: Use a while loop to handle invalid inputs
     city = input("\nWould you like to see data for Chicago, New York City, or Washington.\n").lower()
 
-
     while True:
-          if city in ['chicago','new york city','washington']:
-               break
-          else:
-               city = input('Enter the correct city name: ').lower()
+        if city in ['chicago', 'new york city', 'washington']:
+            break
+        else:
+            city = input('Enter the correct city name: ').lower()
 
     # TO DO: get user input for month (all, january, february, ... , june)
     month = input("\nWhich month? January, February, March, April, May, June, or All?\n").lower()
 
     while True:
-        if month in ['january','february','march','april','may','june','all']:
+        if month in ['january', 'february', 'march', 'april', 'may', 'june', 'all']:
             break
         else:
             month = input('Enter a valid month: ').lower()
@@ -40,9 +44,8 @@ def get_filters():
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     day = input('\nWhich day ? Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, or All?\n').lower()
 
-
     while True:
-        if day in ['monday', 'tuesday', 'wednesday','thursday','friday','saturday','sunday','all']:
+        if day in ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']:
             break
         else:
             day = input('Enter a correct day of the week: ').lower()
@@ -57,8 +60,10 @@ def load_data(city, month, day):
 
     Args:
         (str) city - name of the city to analyze
-        (str) month - name of the month to filter by, or "all" to apply no month filter
-        (str) day - name of the day of week to filter by, or "all" to apply no day filter
+        (str) month - name of the month to filter by,
+         or "all" to apply no month filter
+        (str) day - name of the day of week to filter by,
+         or "all" to apply no day filter
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
@@ -66,12 +71,9 @@ def load_data(city, month, day):
     print ("Accessing data from: " + file_name)
     df = pd.read_csv(file_name)
 
-
-    df['Start Time'] = pd.to_datetime(arg = df['Start Time'], format = '%Y-%m-%d %H:%M:%S')
-
+    df['Start Time']=pd.to_datetime(arg=df['Start Time'], format='%Y-%m-%d %H:%M:%S')
     #filter by month
     if month != 'all':
-
         df['month'] = df['Start Time'].dt.month
 
         months = ['january', 'february', 'march', 'april', 'may', 'june']
@@ -97,7 +99,6 @@ def time_stats(df):
     month = df['Start Time'].dt.month
     weekday_name = df['Start Time'].dt.weekday_name
     hour = df['Start Time'].dt.hour
-
 
     # TO DO: display the most common month
     most_common_month = month.mode()[0]
@@ -144,10 +145,10 @@ def trip_duration_stats(df):
 
     #Readable time format
     def readable_time(seconds):
-        m, s = divmod(seconds,60)
-        h, m = divmod(m,60)
-        d, h = divmod(h,24)
-        y, d = divmod(d,365)
+        m, s = divmod(seconds, 60)
+        h, m = divmod(m, 60)
+        d, h = divmod(h, 24)
+        y, d = divmod(d, 365)
         print('Years: {}, Days: {}, Hours: {}, Mins: {}, Secs: {}'.format(y,d,h,m,s))
 
     # TO DO: display total travel time
@@ -203,13 +204,15 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-    
+
 def raw_data(df):
     """
-    Raw data is displayed upon request by the user in this manner: Script should prompt the user     if they want to see 5 lines of raw data, display that data if the answer is 'yes', and                 continue these prompts and displays until the user says 'no'.
-    
+    Raw data is displayed upon request by the user in this manner:
+    Script should prompt the user if they want to see 5 lines of raw data,
+    display that data if the answer is 'yes', and continue these prompts
+    and displays until the user says 'no'.
     """
-    
+
     user_input = input('Do you want to see raw data? Enter yes or no.\n')
     line_number = 0
 
