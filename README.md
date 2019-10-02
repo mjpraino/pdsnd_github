@@ -1,5 +1,5 @@
 ### Date created
-Monday September 23, 2019 (Passed)
+This Project was completed on Monday September 23, 2019 (Passed)
 
 ### Project Title
 Explore US Bikeshare Data
@@ -17,3 +17,4 @@ washington.csv
 https://docs.python.org/3/
 https://stackoverflow.com
 https://github.com/mjpraino/adventure_game
+https://classroom.udacity.com/me
